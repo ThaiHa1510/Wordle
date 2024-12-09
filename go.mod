@@ -7,14 +7,19 @@ toolchain go1.23.4
 require (
 	github.com/gofiber/fiber/v2 v2.52.5
 	github.com/joho/godotenv v1.5.1
+	github.com/stretchr/testify v1.8.4
 	go.mongodb.org/mongo-driver v1.17.1
+	gorm.io/gorm v1.25.12
 
 )
 
 require (
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	gorm.io/gorm v1.25.12 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
 require (

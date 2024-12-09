@@ -2,8 +2,8 @@ package handler
 
 import (
 	"Wordle/internal/database"
-	"Wordle/internal/models"
 	"Wordle/internal/response"
+	"Wordle/internal/utils"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
@@ -26,23 +26,13 @@ func WordSegHandler(db *database.Service) func(*fiber.Ctx) error {
 				Detail: validationErrors,
 			})
 		}
-		user := c.Locals("user").(models.User)
 
-		// Create word records
-		var words []models.Word
-		word := models.Word{
-			Content: body.Text,
-			UserID:  user.ID,
+		err := utils.AddNewWord(body.Text)
+		if err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+				"error": err.Error(),
+			})
 		}
-		words = append(words, word)
-
-		// Save words to the database
-		// if err := db.Create(&words).Error; err != nil {
-		// 	return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-		// 		"error": "Failed to store words",
-		// 	})
-		// }
-
 		return c.Status(fiber.StatusOK).JSON(fiber.Map{
 			"message": "Text processed successfully",
 		})

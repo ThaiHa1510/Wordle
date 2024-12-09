@@ -11,7 +11,7 @@ func (s *FiberServer) RegisterFiberRoutes() {
 	s.App.Post("/wordseg", handler.WordSegHandler(&s.db))
 	s.App.Get("/daily/", handler.DailyHandler)
 	s.App.Get("/word/:word", handler.WordHandler)
-	s.App.Get("/random", handler.RandomHandler(&s.db))
+	s.App.Get("/random", handler.RandomHandler)
 
 }
 
